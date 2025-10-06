@@ -1,0 +1,65 @@
+{
+  "name": "news-crawler-vue",
+  "version": "1.0.0",
+  "description": "Vue 3 desktop application for news crawling and visualization",
+  "main": "electron-main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron": "electron .",
+    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && npx electron .\"",
+    "electron:build": "npm run build && electron-builder",
+    "dist": "electron-builder --publish=never",
+    "pack": "electron-builder --dir"
+  },
+  "keywords": [
+    "news",
+    "crawler",
+    "desktop",
+    "electron",
+    "vue",
+    "rss"
+  ],
+  "author": "News Crawler Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.0",
+    "concurrently": "^8.2.2",
+    "electron-builder": "^24.6.4",
+    "vite": "^5.0.0",
+    "wait-on": "^7.2.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.0",
+    "axios": "^1.6.2",
+    "electron": "^27.0.0",
+    "pinia": "^2.1.7",
+    "vue": "^3.3.8",
+    "vue-router": "^4.2.5",
+    "ws": "^8.14.2"
+  },
+  "build": {
+    "appId": "com.newscrawler.desktop",
+    "productName": "News Crawler",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.news",
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
